@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+
+
+    <title>Single Page App -testi</title>
+        <style>
+            .alert {display: none;}
+            .focuspoint {width: 1px; height: 1px;}
+            .focuspoint:focus {outline: none;}
+            .loader {background-color: rgba(255,255,255,0.5); position: absolute; width:100%; height: 100%; color:black; text-align: center; padding-top: 4em;}
+            .loader span {display:block; text-align:center; width: 2em; height: 2em; font-size:2em;}
+        </style>
+    </head>
+
+    <body>
+        <div class="loader" aria-hidden="true"><div class="spinner-border"></div><div>Ladataan...</div></div>
+        <div class="container">
+            <div class="focuspoint" id="focusbeforeheader" tabindex="-1">&nbsp;</div>
+            <a class="sr-only sr-only-focusable" href="#focus">Siirry pääsisältöön</a>
+            
+            
+            <h1 id="focus" tabindex="-1">Pääotsikko</h1>
+            
+            <h2 class="" id="focus2" tabindex="-1">Sivu <span class="page">1</span></h2>
+            <button type="button" class="btn btn-primary" onclick="loadPage(--pagenum)"><span class="fas fa-chevron-left"></span> Edellinen sivu</button>
+            <button type="button" class="btn btn-primary" onclick="loadPage(++pagenum)">Seuraava sivu <span class="fas fa-chevron-right"></span></button>
+            <div class="statusmessage sr-only" role="status"></div>
+            
+        </div>
+    <div role="status" class="hidden"></div>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/b13141fae8.js"></script>
+    <script type="text/javascript">
+        var pagenum=1;
+        var title ="Single Page App -testi";
+        $(".loader").hide();
+        function loadPage(page) {
+            $(".statusmessage").text("Ladataan");
+            $(".loader").show();
+            setTimeout(function(){
+                
+                $("#focus2").focus();
+                $(".statusmessage").text("Näytetään hakutulokset "+(page*10)+" - "+((page+1)*10)+", sivu "+page);
+                document.title = title+", sivu "+page;
+                $(".page").text(page);
+                $(".loader").hide();
+            },2000);
+  
+            
+        }
+    </script>
+
+    </body>
+</html>
